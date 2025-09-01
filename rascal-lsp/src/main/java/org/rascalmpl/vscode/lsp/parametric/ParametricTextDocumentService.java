@@ -754,7 +754,7 @@ public class ParametricTextDocumentService implements IBaseTextDocumentService, 
                 // range to Rascal loc
                 ISourceLocation loc = range == null
                     ? TreeAdapter.getLocation(tree)
-                    : Locations.toSourceLocation(fileState, range, columns);
+                    : Locations.toSourceLocation(fileState.getLocation(), range, columns);
                 return contribs.formatting(tree, loc, optSet).get();
             })
             // convert the document changes

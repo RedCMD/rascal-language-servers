@@ -80,7 +80,9 @@ public class ArrayLineOffsetMap implements LineColumnOffsetMap {
 
     @Override
     public Pair<Integer, Integer> calculateInverseOffsetLength(int beginLine, int beginColumn, int endLine, int endColumn) {
-        assert beginLine <= endLine : "beginLine cannot be larger than endLine";
+        if (beginLine > endLine || (beginLine == endLine && beginColumn > endColumn)) {
+            throw new IllegalArgumentException("Begin position must be before end position");
+        }
 
         int startOffset = lineStartOffsets.get(beginLine) + translateInverseColumn(beginLine, beginColumn, false);
         int endOffset = lineStartOffsets.get(endLine) + translateInverseColumn(endLine, endColumn, true);

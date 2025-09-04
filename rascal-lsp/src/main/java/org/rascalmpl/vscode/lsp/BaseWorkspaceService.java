@@ -189,7 +189,7 @@ abstract public class BaseWorkspaceService implements WorkspaceService, Language
                 final var extension = settings.get("extension").getAsJsonObject();
                 if (extension.has("minLogLevel")) {
                     final var minLogLevel = extension.get("minLogLevel").getAsString();
-                    Configurator.setRootLevel(Level.getLevel(minLogLevel));
+                    Configurator.setRootLevel(Level.toLevel(minLogLevel, Level.DEBUG));
                 }
             }
         }
